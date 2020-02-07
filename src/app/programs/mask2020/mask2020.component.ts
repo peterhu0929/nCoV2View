@@ -13,13 +13,59 @@ export class Mask2020Component implements OnInit {
   public maskData: Array<any>;
   public cityCountry: Array<any>;
   public District: Array<any>;
+  public SQL: string;
+  public SQLdatas: Array<string>;
+  public ValueItems: Array<string>;
   constructor(private programService: ProgramsService,
     private shareDialogService: ShareDialogService) { }
 
   ngOnInit() {
     this.getCityCountryData();
     // this.getMaskData();
+    this.getSQL();
   }
+
+  getSQL() {
+    this.SQLdatas = new Array<string>();
+    this.ValueItems = ['abc',
+      'peter',
+      't',
+      'test',
+      'Test2',
+      'Test2_委外',
+      't-自營',
+      '另類投資',
+      '另類投資_自營',
+      '另類投資_委外',
+      '全基金(排除外匯風險)',
+      '自營(排除外匯風險)',
+      '其他',
+      '國內委外(排除外匯風險)',
+      '國內債務證券',
+      '國內債務證券_自營',
+      '國內債務證券_委外',
+      '國內權益證券',
+      '國內權益證券_自營',
+      '國內權益證券_委外',
+      '國外委外(排除外匯風險)',
+      '國外部位',
+      '國外債券證券',
+      '國外債券證券_自營',
+      '國外債券證券_委外',
+      '國外權益證券',
+      '國外權益證券_自營',
+      '國外權益證券_委外',
+      '銀行存款',
+      '銀行存款_自營',
+      '銀行存款_委外'];
+    for (let i = 0; i <= this.ValueItems.length - 1; i++) {
+      this.SQL = 'INSERT INTO [dbo].[tblUserDefinePortfolioCondition]([Code],[Description],[Moditime]) VALUES' +
+        `('` + this.ValueItems[i] + `','Test', GETDATE())`;
+      this.SQLdatas.push(this.SQL);
+    }
+  }
+
+
   getCityCountryData() {
     this.programService.getCityCountyData().subscribe(
       (response: any) => {
@@ -39,7 +85,6 @@ export class Mask2020Component implements OnInit {
     );
   }
   getDistrict(pcityName: string) {
-    // console.log(pcityName);
     var selectDistrict = this.cityCountry.find(x => x.CityName === pcityName);
     this.District = selectDistrict.AreaList
     // console.log(this.District);
