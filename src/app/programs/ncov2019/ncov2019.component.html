@@ -1,0 +1,11 @@
+<p>
+  ncov2019 works!
+</p>
+<div *ngFor="let item of ncov2019Data">
+  {{item.provinceName}}
+  <div *ngFor="let city of item.cities">
+    {{city.cityName}}
+  </div>
+</div>
+
+{{ncov2019Data|json}}

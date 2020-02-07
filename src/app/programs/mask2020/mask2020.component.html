@@ -1,0 +1,40 @@
+<p>
+  mask2020 works!
+</p>
+<!-- <input type="file" accept=".csv" (change)=" csv2Array($event)"> -->
+<div>
+  <mat-form-field>
+    <mat-select [(ngModel)]="selectedData" placeholder="請選擇一個場站">
+      <mat-option *ngFor="let u of maskData" [value]="u">
+        {{u.properties.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+
+<div>
+  <mat-form-field>
+    <mat-select [(ngModel)]="selectCity" (ngModelChange)="getDistrict(selectCity)" placeholder="請選擇一個城市">
+      <mat-option *ngFor="let u of cityCountry" [value]="u.CityName">
+        {{u.CityName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+
+
+<div *ngFor="let u of District">
+  {{u.AreaName}}
+</div>
+<!-- {{ this.District|json}} -->
+<!-- <div>
+  <mat-form-field>
+    <mat-select [(ngModel)]="selectDistrict" placeholder="請選擇一個區">
+      <mat-option *ngFor="let u of District" [value]="u">
+        {{u.AreaName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div> -->
