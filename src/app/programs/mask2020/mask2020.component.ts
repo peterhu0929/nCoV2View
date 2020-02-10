@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ProgramsService } from '../programs.service';
 import { ShareDialogService } from 'src/app/share-dialog/share-dialog.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { StaticInjector } from '@angular/core/src/di/injector';
+import { p } from '@angular/core/src/render3';
 
 @Component({
   selector: 'app-mask2020',
@@ -9,25 +11,61 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./mask2020.component.scss']
 })
 export class Mask2020Component implements OnInit {
-  public fileReaded: any;
+  public selectCity: string;
+  public selectArea: string;
   public maskData: Array<any>;
   public cityCountry: Array<any>;
   public District: Array<any>;
+  public PharmacyInfo: Array<any>;
+  public PharmacyCount: number;
   public SQL: string;
   public SQLdatas: Array<string>;
-  public ValueItems: Array<string>;
+
+  // public Code: Array<string>;
+  // public Description: Array<string>;
   constructor(private programService: ProgramsService,
     private shareDialogService: ShareDialogService) { }
 
   ngOnInit() {
     this.getCityCountryData();
-    // this.getMaskData();
-    this.getSQL();
+    this.getMaskData();
+    // this.getSQL();
   }
 
   getSQL() {
     this.SQLdatas = new Array<string>();
-    this.ValueItems = ['abc',
+    const Code = ['abc',
+      'peter test',
+      't_委外',
+      'test',
+      'Test2',
+      'Test2_委外',
+      't_自營',
+      'OI',
+      'OI_自營',
+      'OI_委外',
+      '全基金(排除外匯風險)',
+      '自營(排除外匯風險)',
+      'OI',
+      '國內委外(排除外匯風險)',
+      'DF',
+      'DF_自營',
+      'DF_委外',
+      'DE',
+      'DE_自營',
+      'DE_委外',
+      '國外委外(排除外匯風險)',
+      '國外部位',
+      'GF',
+      'GF_自營',
+      'GF_委外',
+      'GE',
+      'GE_自營',
+      'GE_委外',
+      'DD',
+      'DD_自營',
+      'DD_委外'];
+    const Description = ['abc',
       'peter',
       't',
       'test',
@@ -58,10 +96,10 @@ export class Mask2020Component implements OnInit {
       '銀行存款',
       '銀行存款_自營',
       '銀行存款_委外'];
-    for (let i = 0; i <= this.ValueItems.length - 1; i++) {
-      this.SQL = 'INSERT INTO [dbo].[tblUserDefinePortfolioCondition]([Code],[Description],[Moditime]) VALUES' +
-        `('` + this.ValueItems[i] + `','Test', GETDATE())`;
-      this.SQLdatas.push(this.SQL);
+    for (let i = 0; i <= Code.length - 1; i++) {
+      const SQL = 'INSERT INTO [dbo].[tblUserDefinePortfolioCondition]([Code],[Description],[Moditime]) VALUES' +
+        `('` + Code[i] + `','` + Description[i] + `', GETDATE())`;
+      this.SQLdatas.push(SQL);
     }
   }
 
@@ -84,10 +122,20 @@ export class Mask2020Component implements OnInit {
       (error: HttpErrorResponse) => this.programService.HandleError(error)
     );
   }
-  getDistrict(pcityName: string) {
-    var selectDistrict = this.cityCountry.find(x => x.CityName === pcityName);
+  getDistrict(pCityName: string) {
+    var selectDistrict = this.cityCountry.find(x => x.CityName === pCityName);
     this.District = selectDistrict.AreaList
-    // console.log(this.District);
+    // console.log(selectDistrict);
+  }
+  findPharmacy(pCityName: string, pAreaName: string) {
+    console.log(pCityName, pAreaName);
+    this.selectArea = pAreaName;
+    this.PharmacyInfo = new Array<any>();
+    this.PharmacyInfo = this.maskData.filter(
+      x => x.properties.county === pCityName
+        && x.properties.town === pAreaName);
+    this.PharmacyCount = this.PharmacyInfo.length;
+    console.log(this.PharmacyInfo);
   }
   /* #region csv2Array*/
   // csv2Array(fileInput: any) {

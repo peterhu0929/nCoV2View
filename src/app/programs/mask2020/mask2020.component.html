@@ -2,11 +2,11 @@
   mask2020 works!
 </p>
 <!-- <input type="file" accept=".csv" (change)=" csv2Array($event)"> -->
-<div *ngFor="let u of SQLdatas">
+<!-- <div *ngFor="let u of SQLdatas">
   {{u}}
-</div>
+</div> -->
 
-<div>
+<!-- <div>
   <mat-form-field>
     <mat-select [(ngModel)]="selectedData" placeholder="請選擇一個場站">
       <mat-option *ngFor="let u of maskData" [value]="u">
@@ -14,7 +14,7 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
-</div>
+</div> -->
 
 
 <div>
@@ -26,11 +26,27 @@
     </mat-select>
   </mat-form-field>
 </div>
+<h1>{{this.selectArea}} {{this.PharmacyCount}}</h1>
+<div *ngFor="let u of District" class="inlineButton">
+  <button mat-fab color="warn" (click)="findPharmacy(selectCity,u.AreaName)">
+    {{u.AreaName}}</button>
+</div>
 
-
-
-<div *ngFor="let u of District">
-  {{u.AreaName}}
+<div>
+  <mat-card *ngFor="let results of PharmacyInfo">
+    <mat-card-content>
+      <h2>{{results.properties.name}}</h2>
+      <h3>{{results.properties.phone}}</h3>
+      <h3>{{results.properties.address}}</h3>
+      <!-- <h3>{{results.properties.available}}</h3> -->
+      <label>成人口罩數量</label>
+      <h2>{{results.properties.mask_adult}}</h2>
+      <label>小孩口罩數量</label>
+      <h2>{{results.properties.mask_child}}</h2>
+      <label>資料更新時間</label>
+      <h3>{{results.properties.updated}}</h3>
+    </mat-card-content>
+  </mat-card>
 </div>
 <!-- {{ this.District|json}} -->
 <!-- <div>
