@@ -89,7 +89,7 @@ export class ProgramsService {
   public getData(): Observable<any> {
     // const getURL = 'https://netcoretri30days.azurewebsites.net/api/user/GetAllUser';
     // return this.http.get<any>(getURL, this.httpOptions);
-    const getURL = "../../assets/jsonData.json";
+    const getURL = environment.GithubPage + '/assets/jsonData.json';
     return this.http.get<any>(getURL);
   }
   public getUbikeData(): Observable<any> {
@@ -98,7 +98,7 @@ export class ProgramsService {
     return this.http.get<any>(URL, this.httpOptions);
   }
   public getCityCountyData(): Observable<any> {
-    const getURL = "../../assets/CityCountyData.json";
+    const getURL = environment.GithubPage + '/assets/CityCountyData.json';
     return this.http.get<any>(getURL);
   }
   public getnCov2019Data(): Observable<any> {
@@ -108,6 +108,18 @@ export class ProgramsService {
   public getMaskData(): Observable<any> {
     const URL = "https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json";
     return this.http.get<any>(URL);
+  }
+  public getDistance(start: any, end: any) {
+    const lat1 = (Math.PI / 180) * start.latitude;
+    const lat2 = (Math.PI / 180) * end.latitude;
+    const lon1 = (Math.PI / 180) * start.longitude;
+    const lon2 = (Math.PI / 180) * end.longitude;
+    // 地球半徑
+    const R = 6371;
+    // 兩點間距離 km，如果想要米的話，結果*1000就可以了
+    let d = Math.acos(Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(lon2 - lon1)) * R;
+
+    return d * 1000;
   }
   // http呼叫錯誤處理
   public HandleError(e: any): void {

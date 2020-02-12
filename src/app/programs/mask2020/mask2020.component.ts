@@ -3,7 +3,8 @@ import { ProgramsService } from '../programs.service';
 import { ShareDialogService } from 'src/app/share-dialog/share-dialog.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { StaticInjector } from '@angular/core/src/di/injector';
-import { p } from '@angular/core/src/render3';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Tri002Component } from '../tri002/tri002.component';
 
 @Component({
   selector: 'app-mask2020',
@@ -13,6 +14,7 @@ import { p } from '@angular/core/src/render3';
 export class Mask2020Component implements OnInit {
   public selectCity: string;
   public selectArea: string;
+  public selectDistrict: string;
   public maskData: Array<any>;
   public cityCountry: Array<any>;
   public District: Array<any>;
@@ -24,12 +26,14 @@ export class Mask2020Component implements OnInit {
   // public Code: Array<string>;
   // public Description: Array<string>;
   constructor(private programService: ProgramsService,
-    private shareDialogService: ShareDialogService) { }
+    private shareDialogService: ShareDialogService,
+    public dialog: MatDialog) { }
 
   ngOnInit() {
     this.getCityCountryData();
     this.getMaskData();
     // this.getSQL();
+    this.getLocation();
   }
 
   getSQL() {
@@ -103,7 +107,9 @@ export class Mask2020Component implements OnInit {
     }
   }
 
-
+  // callMap(pContent) {
+  //   this.shareDialogService.openShareDialog(pContent);
+  // }
   getCityCountryData() {
     this.programService.getCityCountyData().subscribe(
       (response: any) => {
@@ -137,6 +143,47 @@ export class Mask2020Component implements OnInit {
     this.PharmacyCount = this.PharmacyInfo.length;
     console.log(this.PharmacyInfo);
   }
+  openMapDialog(pContent?: any): void {
+    const dialogRef = this.dialog.open(Tri002Component, {
+      width: '600px',
+      data: { content: pContent }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(pContent);
+    });
+  }
+  getLocation() {
+    if (navigator.geolocation) {
+      const options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
+      };
+      navigator.geolocation.getCurrentPosition(this.showPosition, this.showError, options);
+    } else {
+      this.shareDialogService.openShareDialog('Geolocation is not supported by this browser.');
+    }
+  }
+  showPosition(pos) {
+    console.log(pos);
+    let crd = pos.coords;
+    var a = crd.latitude + ' ' + crd.longitude;
+    console.log('Your current position is:');
+    console.log('Latitude : ' + crd.latitude);
+    console.log('Longitude: ' + crd.longitude);
+    console.log('More or less ' + crd.accuracy + ' meters.');
+    // alert(a.toString());
+    // console.log(crd);
+  }
+
+  showError(err) {
+    console.warn('ERROR(' + err.code + '): ' + err.message);
+  }
+
+
+
+
   /* #region csv2Array*/
   // csv2Array(fileInput: any) {
   //   this.fileReaded = fileInput.target.files[0];

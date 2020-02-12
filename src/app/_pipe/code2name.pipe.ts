@@ -3,7 +3,8 @@ export enum PipeParm {
   CompileStatus = 'CompileStatus',
   CompilePGType = 'CompilePGType',
   YN2Boolean = 'YN2Boolean',
-  EventStatus = 'EventStatus'
+  EventStatus = 'EventStatus',
+  MaskSaleStatus = 'MaskSaleStatus'
 }
 @Pipe({
   name: 'code2name'
@@ -42,6 +43,17 @@ export class Code2namePipe implements PipeTransform {
         name = '尚未開始報名';
       } else if (code === '100') {
         name = '報名中';
+      }
+    }
+    if (exponent === PipeParm.MaskSaleStatus) {
+      if (code === 0) {
+        name = '已售完';
+      } else if (code > 0) {
+        name = code;
+        // } else if (code === 1000) {
+        //   name = '已佈署';
+        // } else if (code === 0) {
+        //   name = '全部';
       }
     }
     return name;

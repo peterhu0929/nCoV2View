@@ -7,7 +7,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "publishGithubTest": "start \"angular\" ng build --prod --base-href /nCoV2View/ & start npx ngh --dir=dist/AngularTri --no-silent",
+    "publishGithub": "npx ngh --dir=dist/AngularTri --no-silent"
   },
   "private": true,
   "dependencies": {

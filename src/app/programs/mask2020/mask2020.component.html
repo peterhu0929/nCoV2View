@@ -1,6 +1,3 @@
-<p>
-  mask2020 works!
-</p>
 <!-- <input type="file" accept=".csv" (change)=" csv2Array($event)"> -->
 <!-- <div *ngFor="let u of SQLdatas">
   {{u}}
@@ -25,22 +22,39 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
+  <mat-form-field>
+    <mat-select [(ngModel)]="selectDistrict" (ngModelChange)="findPharmacy(selectCity,selectDistrict)"
+      placeholder="請選擇一個區">
+      <mat-option *ngFor="let u of District" [value]="u.AreaName">
+        {{u.AreaName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 </div>
-<h1>{{this.selectArea}} {{this.PharmacyCount}}</h1>
-<div *ngFor="let u of District" class="inlineButton">
+<h1>{{this.selectCity}}{{this.selectArea}}{{this.PharmacyCount}}</h1>
+
+
+
+<!-- <div *ngFor="let u of District" class="inlineButton">
   <button mat-fab color="warn" (click)="findPharmacy(selectCity,u.AreaName)">
     {{u.AreaName}}</button>
-</div>
+</div> -->
+
+<!-- <button mat-fab color="warn" (click)="getMaskData()">
+  <span matTooltip="Search">
+    <mat-icon>search</mat-icon>
+  </span>
+</button> -->
 
 <div>
-  <mat-card *ngFor="let results of PharmacyInfo">
+  <mat-card *ngFor="let results of PharmacyInfo" (click)="openMapDialog(results.properties.name)">
     <mat-card-content>
       <h2>{{results.properties.name}}</h2>
       <h3>{{results.properties.phone}}</h3>
       <h3>{{results.properties.address}}</h3>
       <!-- <h3>{{results.properties.available}}</h3> -->
       <label>成人口罩數量</label>
-      <h2>{{results.properties.mask_adult}}</h2>
+      <h2>{{results.properties.mask_adult| code2name:'MaskSaleStatus'}}</h2>
       <label>小孩口罩數量</label>
       <h2>{{results.properties.mask_child}}</h2>
       <label>資料更新時間</label>

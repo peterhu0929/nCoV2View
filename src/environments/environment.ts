@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  TriBackendAPI: 'https://localhost:5001/api'
+  TriBackendAPI: 'https://localhost:5001/api',
+  GithubPage: '../..'
 };
 
 /*

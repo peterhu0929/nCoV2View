@@ -9,7 +9,7 @@ import { Ncov2019Component } from './programs/ncov2019/ncov2019.component';
 import { Mask2020Component } from './programs/mask2020/mask2020.component';
 
 const routes: Routes =
-  [{ path: '', redirectTo: '/trievent', pathMatch: 'full' },
+  [{ path: '', redirectTo: '/mask2020', pathMatch: 'full' },
   { path: 'tri001', component: Tri001Component },
   { path: 'tri002', component: Tri002Component },
   { path: 'trievent', component: TrieventComponent },
@@ -31,7 +31,7 @@ const routes: Routes =
 // ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true },
+  imports: [RouterModule.forRoot(routes, { useHash: false, enableTracing: false },
   )],
   exports: [RouterModule]
 })
