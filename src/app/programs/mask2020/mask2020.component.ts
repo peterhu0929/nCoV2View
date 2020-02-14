@@ -19,7 +19,8 @@ export class Mask2020Component implements OnInit {
   public cityCountry: Array<any>;
   public District: Array<any>;
   public PharmacyInfo: Array<any>;
-  public PharmacyCount: number;
+  public PharmacyCount: string;
+  public LastUpdatedTime: string;
   public SQL: string;
   public SQLdatas: Array<string>;
 
@@ -129,8 +130,11 @@ export class Mask2020Component implements OnInit {
     );
   }
   getDistrict(pCityName: string) {
-    var selectDistrict = this.cityCountry.find(x => x.CityName === pCityName);
-    this.District = selectDistrict.AreaList
+    // 重選清空選擇區與藥局數量
+    this.selectArea = null;
+    this.PharmacyCount = null;
+    const selectDistrict = this.cityCountry.find(x => x.CityName === pCityName);
+    this.District = selectDistrict.AreaList;
     // console.log(selectDistrict);
   }
   findPharmacy(pCityName: string, pAreaName: string) {
@@ -140,9 +144,41 @@ export class Mask2020Component implements OnInit {
     this.PharmacyInfo = this.maskData.filter(
       x => x.properties.county === pCityName
         && x.properties.town === pAreaName);
-    this.PharmacyCount = this.PharmacyInfo.length;
-    console.log(this.PharmacyInfo);
+    this.PharmacyCount = this.PharmacyInfo.length.toString() + '間';
+    const updateData = this.PharmacyInfo.find(x => x.properties.updated != null);
+    this.LastUpdatedTime = '最後更新時間為 ' + updateData.properties.updated;
+    console.log(this.LastUpdatedTime);
   }
+  changeColor(item: any): string {
+    if (item === 0) {
+      return 'GARY';
+    } else if (item > 0 && item <= 150) {
+      return '#f9090996';
+    } else if (item > 150) {
+      return '#3fb58961';
+    }
+  }
+  getTest() {
+    if (this.PharmacyInfo) {
+      // this.PharmacyInfo.forEach(x => this.compare(x.properties.mask_adult, x.properties.mask_adult));
+      // this.PharmacyInfo.sort(this.compare(a, b))
+      this.PharmacyInfo = this.PharmacyInfo.filter(x => x.properties.mask_adult > 0);
+      this.PharmacyCount = this.PharmacyInfo.length.toString() + '間';
+      const updateData = this.PharmacyInfo.find(x => x.properties.updated != null);
+      this.LastUpdatedTime = '最後更新時間為 ' + updateData.properties.updated;
+    }
+  }
+
+  compare(a, b) {
+    if (a < b) {
+      return -1;
+    }
+    if (a > b) {
+      return 1;
+    }
+    return 0;
+  }
+
   openMapDialog(pContent?: any): void {
     const dialogRef = this.dialog.open(Tri002Component, {
       width: '600px',

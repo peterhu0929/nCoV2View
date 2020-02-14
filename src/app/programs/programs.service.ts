@@ -117,7 +117,7 @@ export class ProgramsService {
     // 地球半徑
     const R = 6371;
     // 兩點間距離 km，如果想要米的話，結果*1000就可以了
-    let d = Math.acos(Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(lon2 - lon1)) * R;
+    const d = Math.acos(Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(lon2 - lon1)) * R;
 
     return d * 1000;
   }

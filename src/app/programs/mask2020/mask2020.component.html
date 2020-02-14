@@ -13,7 +13,6 @@
   </mat-form-field>
 </div> -->
 
-
 <div>
   <mat-form-field>
     <mat-select [(ngModel)]="selectCity" (ngModelChange)="getDistrict(selectCity)" placeholder="請選擇一個城市">
@@ -40,28 +39,55 @@
     {{u.AreaName}}</button>
 </div> -->
 
-<!-- <button mat-fab color="warn" (click)="getMaskData()">
-  <span matTooltip="Search">
-    <mat-icon>search</mat-icon>
-  </span>
-</button> -->
-
-<div>
+<button mat-raised-button color="warn" (click)="getTest()">
+  還有成人口罩嗎
+</button>
+<h3>{{LastUpdatedTime}}</h3>
+<div class="GroupCard">
   <mat-card *ngFor="let results of PharmacyInfo" (click)="openMapDialog(results.properties.name)">
+    <mat-card-header>
+      <h1>{{results.properties.name}}</h1>
+    </mat-card-header>
     <mat-card-content>
-      <h2>{{results.properties.name}}</h2>
-      <h3>{{results.properties.phone}}</h3>
-      <h3>{{results.properties.address}}</h3>
+      <h4>{{results.properties.phone}}</h4>
+      <h4>{{results.properties.address}}</h4>
       <!-- <h3>{{results.properties.available}}</h3> -->
-      <label>成人口罩數量</label>
-      <h2>{{results.properties.mask_adult| code2name:'MaskSaleStatus'}}</h2>
-      <label>小孩口罩數量</label>
-      <h2>{{results.properties.mask_child}}</h2>
-      <label>資料更新時間</label>
-      <h3>{{results.properties.updated}}</h3>
+      <!-- <div style="text-align:center;">
+        <h3 style="display:inline;">
+          成人
+          <span style="font-size:xx-large;"> {{results.properties.mask_adult| code2name:'MaskSaleStatus'}}</span>
+        </h3>
+        <h3 style="display:inline;">
+          小孩
+          <span style="font-size:xx-large;"> {{results.properties.mask_child}}</span>
+        </h3>
+      </div> -->
+      <mat-chip-list style="text-align:center;">
+        成人
+        <mat-chip [ngStyle]="{'background-color':changeColor(results.properties.mask_adult)}"
+          style="font-size:xx-large;">
+          {{results.properties.mask_adult}}</mat-chip>
+        小孩
+        <mat-chip [ngStyle]="{'background-color':changeColor(results.properties.mask_child)}"
+          style="font-size:xx-large;">{{results.properties.mask_child}}</mat-chip>
+      </mat-chip-list>
+      <!-- <DIV style="background-color:#C7FF91;width:300%;height:100%;text-align:center;line-height:100%;">
+        　測試文字垂直置中
+      </DIV> -->
+      <!-- <label>資料更新時間</label>
+      <h3>{{results.properties.updated}}</h3> -->
     </mat-card-content>
   </mat-card>
 </div>
+
+
+
+
+
+
+
+
+
 <!-- {{ this.District|json}} -->
 <!-- <div>
   <mat-form-field>
