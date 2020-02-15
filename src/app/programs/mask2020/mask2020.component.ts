@@ -36,7 +36,6 @@ export class Mask2020Component implements OnInit {
     // this.getSQL();
     this.getLocation();
   }
-
   getSQL() {
     this.SQLdatas = new Array<string>();
     const Code = ['abc',
@@ -107,7 +106,6 @@ export class Mask2020Component implements OnInit {
       this.SQLdatas.push(SQL);
     }
   }
-
   // callMap(pContent) {
   //   this.shareDialogService.openShareDialog(pContent);
   // }
