@@ -24,6 +24,7 @@ import { Ncov2019Component } from './programs/ncov2019/ncov2019.component';
 import { Mask2020Component } from './programs/mask2020/mask2020.component';
 import { NcovdashComponent } from './programs/ncovdash/ncovdash.component';
 import { MatGridListModule, MatCardModule, MatMenuModule, MatIconModule, MatButtonModule } from '@angular/material';
+import { NcovdashCountryComponent } from './programs/ncovdash/ncovdash-country/ncovdash-country.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { MatGridListModule, MatCardModule, MatMenuModule, MatIconModule, MatButt
     TrieventAddComponent,
     Ncov2019Component,
     Mask2020Component,
-    NcovdashComponent],
+    NcovdashComponent,
+    NcovdashCountryComponent],
   imports: [
     BrowserModule,
     FormsModule,

@@ -1,0 +1,19 @@
+<div class="flex-container">
+  <div>
+    <h2>確診{{countryData.cases|number}}
+      <mat-hint style="font-size: xx-small;color:red">今日+{{countryData.todayCases}}</mat-hint>
+    </h2>
+
+    <h2>死亡{{countryData.deaths|number}}
+      <mat-hint style="font-size: xx-small;color:gary">今日+{{countryData.todayDeaths}}</mat-hint>
+    </h2>
+
+    <h2>治癒{{countryData.recovered|number}}</h2>
+  </div>
+
+  <div>
+    <h2>現有案例{{countryData.active|number}}</h2>
+    <h2>重症{{countryData.critical|number}}</h2>
+    <h2>每百萬人感染數{{countryData.casesPerOneMillion|number}}</h2>
+  </div>
+</div>

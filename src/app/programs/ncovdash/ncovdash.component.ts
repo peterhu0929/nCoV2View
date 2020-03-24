@@ -20,17 +20,17 @@ export class NcovdashComponent {
     map(({ matches }) => {
       if (matches) {
         return [
-          { title: 'Card1', cols: 1, rows: 1, id: '1'},
+          { title: 'Card1', cols: 1, rows: 1, id: '1' },
           { title: 'Card2', cols: 1, rows: 1, id: '2' },
           { title: 'Card3', cols: 1, rows: 1, id: '3' },
           { title: 'Card4', cols: 1, rows: 1, id: '4' }
         ];
       }
       return [
-        { title: '全球', cols: 1, rows: 1, id: '1'},
-        { title: '台灣', cols: 1, rows: 1, id: '2'},
-        { title: 'Card3', cols: 1, rows: 2, id: '3'},
-        { title: 'Card4', cols: 1, rows: 2, id: '4'},
+        { title: '全球', cols: 1, rows: 1, id: '1' },
+        { title: '台灣', cols: 1, rows: 1, id: '2' },
+        { title: 'Card3', cols: 1, rows: 2, id: '3' },
+        { title: 'Card4', cols: 1, rows: 2, id: '4' },
         { title: '義大利', cols: 1, rows: 1, id: '5' },
         { title: '美國', cols: 1, rows: 1, id: '6' },
         { title: 'Card7', cols: 1, rows: 1, id: '7' },
@@ -39,11 +39,11 @@ export class NcovdashComponent {
       ];
     })
   );
-  constructor(private breakpointObserver: BreakpointObserver, private programService: ProgramsService) {}
+  constructor(private breakpointObserver: BreakpointObserver, private programService: ProgramsService) { }
 
   ngOnInit(): void {
     this.getAll();
-    this.getbyCountry('Taiwan');
+    // this.getbyCountry('Taiwan');
     // this.getbyCountry('Italy');
     // this.getbyCountry('USA');
 
@@ -53,7 +53,7 @@ export class NcovdashComponent {
     this.programService.getCoronaAll().subscribe(
       (response: any) => {
         this.AllData = response,
-        console.log(this.AllData.cases);
+          console.log(this.AllData.cases);
       },
       (error: HttpErrorResponse) => this.programService.HandleError(error)
     );
@@ -62,7 +62,7 @@ export class NcovdashComponent {
     this.programService.getCoronabyCountry(pCounty).subscribe(
       (response: any) => {
         this.TaiwanData = response,
-        console.log(this.TaiwanData);
+          console.log(this.TaiwanData);
       },
       (error: HttpErrorResponse) => this.programService.HandleError(error)
     );

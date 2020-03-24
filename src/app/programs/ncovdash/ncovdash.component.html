@@ -16,65 +16,21 @@
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
-          <div *ngIf="card.id =='1'" >
-              <h1>確診{{AllData.cases|number}}</h1>
-              <h1>死亡{{AllData.deaths|number}}</h1>
-              <h1>治癒{{AllData.recovered|number}}</h1>
-              <h4>更新時間{{AllData.updated| date:'yyyy/MM/dd HH:mm:ss'}}</h4>
+          <div *ngIf="card.id =='1'">
+            <h1>確診{{AllData.cases|number}}</h1>
+            <h1>死亡{{AllData.deaths|number}}</h1>
+            <h1>治癒{{AllData.recovered|number}}</h1>
+            <h4>更新時間{{AllData.updated| date:'yyyy/MM/dd HH:mm:ss'}}</h4>
           </div>
           <div *ngIf="card.id =='2'">
-            <div class="flex-container">
-            <div>
-            <h2>確診{{TaiwanData.cases|number}}
-              <mat-hint style="font-size: xx-small;color:red">今日+{{TaiwanData.todayCases}}</mat-hint>
-            </h2>
-
-            <h2>死亡{{TaiwanData.deaths|number}}
-              <mat-hint style="font-size: xx-small;color:gary">今日+{{TaiwanData.todayDeaths}}</mat-hint>
-            </h2>
-
-            <h2>治癒{{TaiwanData.recovered|number}}</h2>
-            </div>
-
-            <div>
-            <h2>現有案例{{TaiwanData.active|number}}</h2>
-            <h2>重症{{TaiwanData.critical|number}}</h2>
-            <h2>每百萬人感染數{{TaiwanData.casesPerOneMillion|number}}</h2>
-            </div>
-            </div>
+            <app-ncovdash-country [CountryName]="'Taiwan'"></app-ncovdash-country>
           </div>
-          <!-- <div *ngIf="card.id =='5'">
-            <div class="flex-container">
-              <div>
-                <h2>確診{{TaiwanData.cases|number}}</h2>
-                <mat-hint>今日+{{TaiwanData.todayCases}}</mat-hint>
-                <h2>死亡{{TaiwanData.deaths|number}}</h2>
-                <mat-hint>今日+{{TaiwanData.todayDeaths}}</mat-hint>
-                <h2>治癒{{TaiwanData.recovered|number}}</h2>
-              </div>
-              <div>
-                <h2>現有案例{{TaiwanData.active|number}}</h2>
-                <h2>重症{{TaiwanData.critical|number}}</h2>
-                <h2>每百萬人感染數{{TaiwanData.casesPerOneMillion|number}}</h2>
-              </div>
-            </div>
+          <div *ngIf="card.id =='5'">
+            <app-ncovdash-country [CountryName]="'Italy'"></app-ncovdash-country>
           </div>
-           <div *ngIf="card.id =='6'">
-             <div class="flex-container">
-               <div>
-                 <h2>確診{{TaiwanData.cases|number}}</h2>
-                 <mat-hint>今日+{{TaiwanData.todayCases}}</mat-hint>
-                 <h2>死亡{{TaiwanData.deaths|number}}</h2>
-                 <mat-hint>今日+{{TaiwanData.todayDeaths}}</mat-hint>
-                 <h2>治癒{{TaiwanData.recovered|number}}</h2>
-               </div>
-               <div>
-                 <h2>現有案例{{TaiwanData.active|number}}</h2>
-                 <h2>重症{{TaiwanData.critical|number}}</h2>
-                 <h2>每百萬人感染數{{TaiwanData.casesPerOneMillion|number}}</h2>
-               </div>
-             </div>
-           </div> -->
+          <div *ngIf="card.id =='6'">
+            <app-ncovdash-country [CountryName]="'USA'"></app-ncovdash-country>
+          </div>
           <div *ngIf="card.id=='4'">
             <!-- <iframe width="500" height="350" src="https://www.youtube.com/embed/jP-HD0IaLgE" frameborder="0"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->

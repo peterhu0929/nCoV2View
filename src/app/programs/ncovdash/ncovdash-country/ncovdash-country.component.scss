@@ -1,0 +1,11 @@
+/*  宣告為 flex box */
+.flex-container {
+  display: flex;
+}
+
+/*  將每一個items賦予border，讓我們比較好看出效果 */
+.flex-container>* {
+  width: 50%;
+  // border: 1px solid black;
+  text-align: center;
+}
