@@ -109,6 +109,14 @@ export class ProgramsService {
     const URL = "https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json";
     return this.http.get<any>(URL);
   }
+  public getCoronaAll(): Observable<any> {
+    const URL ="https://corona.lmao.ninja/all";
+    return this.http.get<any>(URL);
+  }
+  public getCoronabyCountry(pCountry: string): Observable<any> {
+    const URL = "https://corona.lmao.ninja/countries/" + pCountry;
+    return this.http.get<any>(URL);
+  }
   public getDistance(start: any, end: any) {
     const lat1 = (Math.PI / 180) * start.latitude;
     const lat2 = (Math.PI / 180) * end.latitude;

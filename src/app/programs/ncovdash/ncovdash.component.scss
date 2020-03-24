@@ -1,0 +1,35 @@
+.grid-container {
+  margin: 20px;
+}
+
+.dashboard-card {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  font-family: 'jf-Open','arial',sans-serif;
+}
+
+.more-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.dashboard-card-content {
+  text-align: center;
+  /* display: inline; */
+}
+
+/*  宣告為 flex box */
+.flex-container {
+  display: flex;
+}
+
+/*  將每一個items賦予border，讓我們比較好看出效果 */
+.flex-container>* {
+  width: 50%;
+  // border: 1px solid black;
+  text-align: center;
+}
