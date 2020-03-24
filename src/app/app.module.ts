@@ -22,6 +22,8 @@ import { TrieventDetailComponent } from './programs/trievent/trievent-detail/tri
 import { TrieventAddComponent } from './programs/trievent/trievent-add/trievent-add.component';
 import { Ncov2019Component } from './programs/ncov2019/ncov2019.component';
 import { Mask2020Component } from './programs/mask2020/mask2020.component';
+import { NcovdashComponent } from './programs/ncovdash/ncovdash.component';
+import { MatGridListModule, MatCardModule, MatMenuModule, MatIconModule, MatButtonModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { Mask2020Component } from './programs/mask2020/mask2020.component';
     TrieventDetailComponent,
     TrieventAddComponent,
     Ncov2019Component,
-    Mask2020Component],
+    Mask2020Component,
+    NcovdashComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -44,6 +47,11 @@ import { Mask2020Component } from './programs/mask2020/mask2020.component';
     AngularMaterialModule,
     PipeModule,
     LayoutModule,
+    MatGridListModule,
+    MatCardModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule,
   ],
   providers: [],
   entryComponents: [ShareDialogComponent, TrieventDetailComponent],
