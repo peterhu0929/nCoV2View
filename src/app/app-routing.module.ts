@@ -7,17 +7,15 @@ import { TrieventComponent } from './programs/trievent/trievent.component';
 import { TrieventAddComponent } from './programs/trievent/trievent-add/trievent-add.component';
 import { Ncov2019Component } from './programs/ncov2019/ncov2019.component';
 import { Mask2020Component } from './programs/mask2020/mask2020.component';
-import { NcovdashComponent } from './programs/ncovdash/ncovdash.component';
 
 const routes: Routes =
-  [{ path: '', redirectTo: '/ncovdash', pathMatch: 'full' },
+  [{ path: '', redirectTo: '/mask2020', pathMatch: 'full' },
   { path: 'tri001', component: Tri001Component },
   { path: 'tri002', component: Tri002Component },
   { path: 'trievent', component: TrieventComponent },
   { path: 'trievent-Add', component: TrieventAddComponent },
   { path: 'ncov2019', component: Ncov2019Component },
-  { path: 'mask2020', component: Mask2020Component },
-  { path: 'ncovdash', component: NcovdashComponent }
+  { path: 'mask2020', component: Mask2020Component }
   ];
 // [
 //   {
