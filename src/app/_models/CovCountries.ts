@@ -1,5 +1,8 @@
+import { CovCountryInfo } from './CovCountryInfo';
+
 export class CovCountries {
   country: string;
+  countryInfo: CovCountryInfo = new CovCountryInfo();
   cases: number;
   todayCases: number;
   deaths: number;
