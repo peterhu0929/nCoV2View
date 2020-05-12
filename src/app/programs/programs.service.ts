@@ -110,11 +110,11 @@ export class ProgramsService {
     return this.http.get<any>(URL);
   }
   public getCoronaAll(): Observable<any> {
-    const URL ="https://corona.lmao.ninja/all";
+    const URL ="https://disease.sh/v2/all";
     return this.http.get<any>(URL);
   }
   public getCoronabyCountry(pCountry: string): Observable<any> {
-    const URL = "https://corona.lmao.ninja/countries/" + pCountry;
+    const URL = "https://disease.sh/v2/countries/" + pCountry;
     return this.http.get<any>(URL);
   }
   public getDistance(start: any, end: any) {

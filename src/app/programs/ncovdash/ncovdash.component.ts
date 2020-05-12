@@ -54,6 +54,8 @@ export class NcovdashComponent {
       (response: any) => {
         this.AllData = response,
           console.log(this.AllData.cases);
+          window.setTimeout(function()
+          {console.log('x')},3000);
       },
       (error: HttpErrorResponse) => this.programService.HandleError(error)
     );
