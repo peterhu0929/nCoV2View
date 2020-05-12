@@ -34,7 +34,7 @@ export class NcovdashComponent {
         { title: '義大利', cols: 1, rows: 1, id: '5' },
         { title: '美國', cols: 1, rows: 1, id: '6' },
         { title: 'Card7', cols: 1, rows: 1, id: '7' },
-        { title: 'Card8', cols: 1, rows: 1, id: '8' },
+        { title: 'Card8', cols: 3, rows: 2, id: '8' },
         { title: 'Card9', cols: 1, rows: 1, id: '9' }
       ];
     })
